@@ -1,17 +1,15 @@
 FROM node:10
 
-# Create app directory
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
 
-RUN npm install --only=production
-RUN npm run build
-# If you are building your code for production
-# RUN npm ci --only=production
+RUN npm install -g yarn
+RUN yarn
 
-# Bundle app source
 COPY . .
+
+RUN yarn build
 
 EXPOSE 3000
 CMD [ "node", "build/index.js" ]

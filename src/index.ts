@@ -3,7 +3,7 @@ import klaw from 'klaw'
 
 const PORT = process.env.PORT || 3000
 const BASE_PATH = process.env.BASE_PATH || '/tmp/files'
-const BASE_URL = process.env.BASE_URL || 'http://localhost'
+const BASE_URL = process.env.BASE_URL || 'http://localhost/'
 
 const init = async () => {
   const server = Hapi.server({
@@ -18,7 +18,7 @@ const init = async () => {
       for await (const file of klaw(BASE_PATH)) {
         if (!file.stats.isDirectory()) {
           items.push({
-            url: BASE_URL + file.path.replace(BASE_PATH, ''),
+            url: BASE_URL + encodeURI(file.path).replace(BASE_PATH, ''),
             size: file.stats.size
           })
         }
