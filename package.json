@@ -1,0 +1,47 @@
+{
+  "name": "list-files",
+  "version": "1.0.0",
+  "description": "Simple file list to JSON",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --env-name production -d build --extensions \".ts\"",
+    "dev": "babel-node src/index.ts --extensions \".ts\"",
+    "lint": "eslint src",
+    "start": "npm run build && pm2 start build/index.js --name listfiles",
+    "stop": "pm2 stop listfiles && pm2 delete listfiles",
+    "restart": "npm stop && npm start"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "@hapi/hapi": "^18.4.0",
+    "klaw": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/plugin-transform-typescript": "^7.6.3",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/hapi__hapi": "^18.2.5",
+    "@types/klaw": "^3.0.0",
+    "@types/node": "^12.12.3",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "@typescript-eslint/typescript-estree": "^2.5.0",
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-config-prettier-standard": "^3.0.1",
+    "eslint-config-standard": "^14.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^1.18.2",
+    "prettier-config-standard": "^1.0.1",
+    "typescript": "^3.6.4"
+  }
+}
