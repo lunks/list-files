@@ -18,7 +18,13 @@ const init = async () => {
       for await (const file of klaw(BASE_PATH)) {
         if (!file.stats.isDirectory()) {
           items.push({
-            url: BASE_URL + encodeURI(file.path).replace(BASE_PATH, ''),
+            url:
+              BASE_URL +
+              file.path
+                .replace(BASE_PATH, '')
+                .split('/')
+                .map(encodeURIComponent)
+                .join('/'),
             size: file.stats.size
           })
         }
